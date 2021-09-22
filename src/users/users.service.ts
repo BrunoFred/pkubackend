@@ -12,8 +12,10 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto) {
     const user = new this.userModel(createUserDto);
-    let saveduser = user.save();
-    return 1;
+    return user.save(function(err, doc) {
+      if (err) return console.error(err);
+      console.log("Document inserted succussfully!");
+    });
   }
 
   findAll() {
