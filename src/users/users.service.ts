@@ -14,7 +14,7 @@ export class UsersService {
     const user = new this.userModel(createUserDto);
     return user.save(function(err, doc) {
       if (err) return console.error(err);
-      console.log("Document inserted succussfully!");
+      console.log("Document inserted successfully!");
     });
   }
 
