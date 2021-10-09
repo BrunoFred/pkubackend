@@ -1,10 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, ObjectId, Schema as MongooseSchema } from 'mongoose';
 
 export type ConsumeDocument = Consume & Document;
 
 @Schema()
 export class Consume {
+    @Prop()
+    user_id : string;
+    
     @Prop()
     name: string;
 
@@ -18,7 +21,7 @@ export class Consume {
     pku_consumed: number;
 
     @Prop()
-    date_and_hour: Date = new Date();
+    date_and_hour: Date;
 }
 
 export const ConsumeSchema = SchemaFactory.createForClass(Consume);

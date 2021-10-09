@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { CreateConsumeDto } from './dto/create-consume.dto';
 import { UpdateConsumeDto } from './dto/update-consume.dto';
 import { Consume, ConsumeDocument } from './entities/consume.entity';
@@ -24,6 +24,10 @@ export class ConsumeService {
 
   findOne(id: string) {
     return this.consumeModel.findById(id);
+  }
+
+  findUserId(user_id: string){
+    return this.consumeModel.find({user_id});
   }
 
   update(id: string, updateConsumeDto: UpdateConsumeDto) {

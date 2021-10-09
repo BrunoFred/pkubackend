@@ -19,6 +19,9 @@ export class User {
 
   @Prop()
   birth_date: Date;
+
+  @Prop()
+  weight: [number, Date];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

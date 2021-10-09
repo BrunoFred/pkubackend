@@ -1,4 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
+import { request } from 'http';
+import { ObjectId } from 'mongoose';
 import { ConsumeService } from './consume.service';
 import { CreateConsumeDto } from './dto/create-consume.dto';
 import { UpdateConsumeDto } from './dto/update-consume.dto';
@@ -15,6 +17,11 @@ export class ConsumeController {
   @Get()
   findAll() {
     return this.consumeService.findAll();
+  }
+
+  @Get(':user_id')
+  findUserId(@Param('user_id') user_id: string) {
+    return this.consumeService.findUserId(user_id);
   }
 
   @Get(':id')

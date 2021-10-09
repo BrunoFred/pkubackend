@@ -1,7 +1,9 @@
+import { ObjectId } from "mongoose";
+
 export class CreateConsumeDto {
+    user_id: string;
     name: string;
-    amount_consumed: [number, string];
-    amount_unity: number;
+    amount_consumed: {quantity: number, unity: string};
     pku_consumed: number;
-    date_and_hour: Date = new Date();
+    date_and_hour: Date;
 }

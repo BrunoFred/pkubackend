@@ -15,13 +15,10 @@ export class Product {
     brand: string;
 
     @Prop()
-    serving_size: number;
+    serving_size: [number, string];
 
     @Prop()
-    serving_unity: number;
-
-    @Prop()
-    protein : [number, string];
+    protein : number;
 
     @Prop()
     barcode : string;
