@@ -4,6 +4,7 @@ import { Model, ObjectId } from 'mongoose';
 import { CreateConsumeDto } from './dto/create-consume.dto';
 import { UpdateConsumeDto } from './dto/update-consume.dto';
 import { Consume, ConsumeDocument } from './entities/consume.entity';
+import { calculateY } from './utils/pkuCalculator';
 
 @Injectable()
 export class ConsumeService {
@@ -11,6 +12,7 @@ export class ConsumeService {
   constructor(@InjectModel(Consume.name) private consumeModel: Model<ConsumeDocument>) {}
 
   create(createConsumeDto: CreateConsumeDto) {
+    createConsumeDto = calculateY(1.8, createConsumeDto);
     const consume = new this.consumeModel(createConsumeDto);
     return consume.save(function(err, doc){
       if (err) return console.error(err);

@@ -15,9 +15,6 @@ export class Consume {
     amount_consumed: [number, string];
 
     @Prop()
-    amount_unity: number;
-
-    @Prop()
     pku_consumed: number;
 
     @Prop()
