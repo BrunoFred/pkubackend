@@ -6,4 +6,6 @@ export class CreateUserDto {
     birth_date: Date;
     weight: {weight: number, date: Date};
     age: number;
+    maxQttPkuDay: number;
+    minQttPkuDay: number;
 }

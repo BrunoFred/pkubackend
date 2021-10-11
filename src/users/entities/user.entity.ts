@@ -23,6 +23,15 @@ export class User {
 
   @Prop()
   weight: [number, Date];
+
+  @Prop()
+  age: number;
+
+  @Prop()
+  maxQttPkuDay: number;
+
+  @Prop()
+  minQttPkuDay: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
