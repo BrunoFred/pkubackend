@@ -1,19 +1,15 @@
-import { CreateConsumeDto } from "../consume/dto/create-consume.dto";
-import { CreateUserDto } from "../users/dto/create-user.dto";
-import { fenilalanina } from "./constants";
-
-export function calculateY(qtdProteinas: number, createConsumeDto) : any{
-    let calculated = fenilalanina(qtdProteinas);
-    createConsumeDto.pku_consumed = calculated;
-    return createConsumeDto;
+export function calculateFenilalaninaPerConsume(createConsumeDto) : any{
+    let regraDeTres = (createConsumeDto.amount_consumed[0]*createConsumeDto.portion[1])/createConsumeDto.portion[0];
+    let pku_consumed = regraDeTres * 0.05;
+    return pku_consumed;
 }
 
 export function getAge(createUserDto) : any{
-    let today = Date.now(); // pega data de agora em ms
-    let birthday = Date.parse(createUserDto.birth_date); // passa a data de nascimento pra ms
-    let getAge = Math.abs(birthday - today); // faz a diferença de ms entre as 2 datas
-    let daysBetweenDates: number = Math.ceil(getAge / (1000 * 60 * 60 * 24)); // transforma de ms para dias
-    return Math.floor(daysBetweenDates / 365); // passa de dias para anos e tira valor float
+    let today = Date.now();
+    let birthday = Date.parse(createUserDto.birth_date);
+    let getAge = Math.abs(birthday - today);
+    let daysBetweenDates: number = Math.ceil(getAge / (1000 * 60 * 60 * 24));
+    return (Math.floor((daysBetweenDates / 365)*100)/100);
 }
 
 export function maxAndMinPkuDay(createUserDto) : any{
