@@ -24,27 +24,27 @@ export function maxAndMinPkuDay(createUserDto) : any{
         maxPkuDay = 70 * createUserDto.weight[0];
     }
 
-        if (createUserDto.age >= 0.5 && createUserDto.age < 1){
+        else if (createUserDto.age >= 0.5 && createUserDto.age < 1){
             minPkuDay = 15 * createUserDto.weight[0];
             maxPkuDay = 50 * createUserDto.weight[0];
         }
 
-            if (createUserDto.age >= 1 && createUserDto.age < 4){
+            else if (createUserDto.age >= 1 && createUserDto.age < 4){
                 minPkuDay = 15 * createUserDto.weight[0];
                 maxPkuDay = 40 * createUserDto.weight[0];
             }
 
-                if (createUserDto.age >= 4 && createUserDto.age < 7){
+                else if (createUserDto.age >= 4 && createUserDto.age < 7){
                     minPkuDay = 15 * createUserDto.weight[0];
                     maxPkuDay = 35 * createUserDto.weight[0];
                 }
 
-                    if (createUserDto.age >= 7 && createUserDto.age < 15){
+                    else if (createUserDto.age >= 7 && createUserDto.age < 15){
                         minPkuDay = 15 * createUserDto.weight[0];
                         maxPkuDay = 30 * createUserDto.weight[0];
                     }
 
-                        if (createUserDto.age >= 15 && createUserDto.age < 19){
+                        else if (createUserDto.age >= 15 && createUserDto.age < 19){
                             minPkuDay = 10 * createUserDto.weight[0];
                             maxPkuDay = 30 * createUserDto.weight[0];
                         }
