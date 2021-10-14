@@ -35,8 +35,6 @@ $ npm install
 ## Running the app
 
 ```bash
-# Configuração MongoDB
-Em app.module.ts, troque o usuário de 'brunofred' para 'user' e a senha de 'diamondisunbreakable' para 'userpassword'
 
 # development
 $ npm run start
