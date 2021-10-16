@@ -12,7 +12,7 @@ export class Consume {
     name: string;
 
     @Prop()
-    amount_consumed: [number, string];
+    amount_consumed: number;
 
     @Prop()
     portion: [number, number];

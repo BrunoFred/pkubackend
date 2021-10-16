@@ -15,7 +15,7 @@ export class Product {
     brand: string;
 
     @Prop()
-    serving_size: [number, string];
+    serving_size: number;
 
     @Prop()
     protein : number;
