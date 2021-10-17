@@ -4,7 +4,7 @@ import { type } from 'os';
 
 export type UserDocument = User & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class User {
   @Prop()
   name: string;
