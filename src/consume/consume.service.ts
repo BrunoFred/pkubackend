@@ -35,12 +35,18 @@ export class ConsumeService {
   }
 
   findOne(id: string) {
-    const x = this.consumeModel.findById(id);
-    return x;
-  }
+    return this.findProductById(id);
+    }
 
   findProductById(id: string): any{
-    return this.productModel.findById(id);
+    return this.productModel.findById(id, function (err, docs) {
+      if (err){
+        console.log(err);
+      }
+      else{
+        console.log("Result : ", docs);
+      }
+    });
   }
 
   findUserId(user_id: string){
