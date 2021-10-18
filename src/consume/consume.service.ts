@@ -6,11 +6,14 @@ import { UpdateConsumeDto } from './dto/update-consume.dto';
 import { Consume, ConsumeDocument } from './entities/consume.entity';
 import { calculateFenilalaninaPerConsume } from '../utils/pkuCalculator';
 import { Product, ProductDocument } from '../products/entities/product.entity';
+import { ProductsService } from '../products/products.service';
 
 @Injectable()
 export class ConsumeService {
 
   constructor(
+    private readonly productsService: ProductsService,
+
     @InjectModel(Consume.name)
     private consumeModel: Model<ConsumeDocument>,
 
@@ -21,8 +24,8 @@ export class ConsumeService {
 
   create(createConsumeDto: CreateConsumeDto) {
     createConsumeDto.pku_consumed = calculateFenilalaninaPerConsume(createConsumeDto);
-    const amount = this.findOne(createConsumeDto.name);
-    console.log(amount)
+    const product = this.findOne(createConsumeDto.name);
+    console.log(product)
     const consume = new this.consumeModel(createConsumeDto);
     return consume.save(function(err, doc){
       if (err) return console.error(err);
@@ -34,20 +37,11 @@ export class ConsumeService {
     return this.consumeModel.find();
   }
 
-  findOne(id: string) {
-    return this.findProductById(id);
+  async findOne(id: string) {
+    const product = await this.productsService.findOne(id);
+    console.log("product", product);
+    return product;
     }
-
-  findProductById(id: string): any{
-    return this.productModel.findById(id, function (err, docs) {
-      if (err){
-        console.log(err);
-      }
-      else{
-        console.log("Result : ", docs);
-      }
-    });
-  }
 
   findUserId(user_id: string){
     return this.consumeModel.find({user_id});
