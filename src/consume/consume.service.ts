@@ -22,9 +22,9 @@ export class ConsumeService {
 )
 {}
 
-  create(createConsumeDto: CreateConsumeDto) {
+  async create(createConsumeDto: CreateConsumeDto) {
     createConsumeDto.pku_consumed = calculateFenilalaninaPerConsume(createConsumeDto);
-    const product = this.findOne(createConsumeDto.name);
+    const product = await this.findOne(createConsumeDto.name);
     console.log(product)
     const consume = new this.consumeModel(createConsumeDto);
     return consume.save(function(err, doc){
