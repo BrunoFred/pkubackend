@@ -8,24 +8,15 @@ export type ConsumeDocument = Consume & Document;
 export class Consume {
     @Prop()
     user_id : string;
-
-    /*@Prop({type: MongooseSchema.Types.ObjectId, ref: 'Product'})
-    product_id : Product;*/
     
     @Prop()
-    name: string;
+    product_id: string;
 
     @Prop()
     amount_consumed: number;
 
     @Prop()
-    portion: [number, number];
-
-    @Prop()
     pku_consumed: number;
-
-    @Prop()
-    date_and_hour: Date;
 }
 
 export const ConsumeSchema = SchemaFactory.createForClass(Consume);

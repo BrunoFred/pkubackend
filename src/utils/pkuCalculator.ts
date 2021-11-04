@@ -1,5 +1,5 @@
-export function calculateFenilalaninaPerConsume(createConsumeDto) : any{
-    let regraDeTres = (createConsumeDto.amount_consumed*createConsumeDto.portion[1])/createConsumeDto.portion[0];
+export function calculateFenilalaninaPerConsume(createConsumeDto, product) : any{
+    let regraDeTres = (createConsumeDto.amount_consumed*product.protein)/product.serving_size;
     let pku_consumed = regraDeTres * 0.05;
     return pku_consumed;
 }

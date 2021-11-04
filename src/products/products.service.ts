@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product, ProductDocument } from './entities/product.entity';
+import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 
 
 @Injectable()
@@ -11,9 +12,9 @@ export class ProductsService {
 
   constructor(
     @InjectModel(Product.name)
-    private productModel: Model<ProductDocument>,
-  ) {
-  }
+    private productModel: Model<ProductDocument>
+  )
+  {}
 
   create(createProductDto: CreateProductDto) {
     const product = new this.productModel(createProductDto);
@@ -35,7 +36,8 @@ export class ProductsService {
     return this.productModel.findOneAndUpdate({ _id: id }, { $set: updateProductDto }, { new: true });
   }
 
-  remove(id: string) {
+  remove(id: string) { 
+    //return await this.productModel.softDelete({ _id: id });
     return this.productModel.deleteOne({ _id: id }).exec();
   }
 }

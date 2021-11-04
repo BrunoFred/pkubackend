@@ -22,7 +22,7 @@ export class ConsumeController {
     return this.consumeService.findUserId(user_id);
   }
 
-  @Get('/consumeid/:id')
+  @Get('/productid/:id')
   findOne(@Param('id') id: string) {
     return this.consumeService.findOne(id);
   }

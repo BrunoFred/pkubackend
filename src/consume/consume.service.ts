@@ -6,16 +6,18 @@ import { UpdateConsumeDto } from './dto/update-consume.dto';
 import { Consume, ConsumeDocument } from './entities/consume.entity';
 import { calculateFenilalaninaPerConsume } from '../utils/pkuCalculator';
 import { Product, ProductDocument } from '../products/entities/product.entity';
+import { CreateProductDto } from 'src/products/dto/create-product.dto';
 import { ProductsService } from '../products/products.service';
+import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 
 @Injectable()
 export class ConsumeService {
 
   constructor(
-    private readonly productsService: ProductsService,
-
     @InjectModel(Consume.name)
     private consumeModel: Model<ConsumeDocument>,
+
+    private readonly productsService: ProductsService,
 
     @InjectModel(Product.name)
     private productModel: Model<ProductDocument>
@@ -23,9 +25,8 @@ export class ConsumeService {
 {}
 
   async create(createConsumeDto: CreateConsumeDto) {
-    createConsumeDto.pku_consumed = calculateFenilalaninaPerConsume(createConsumeDto);
-    const product = await this.findOne(createConsumeDto.name);
-    console.log(product)
+    const product = await this.findOne(createConsumeDto.product_id);
+    createConsumeDto.pku_consumed = calculateFenilalaninaPerConsume(createConsumeDto, product);
     const consume = new this.consumeModel(createConsumeDto);
     return consume.save(function(err, doc){
       if (err) return console.error(err);
@@ -39,9 +40,19 @@ export class ConsumeService {
 
   async findOne(id: string) {
     const product = await this.productsService.findOne(id);
-    console.log("product", product);
     return product;
-    }
+  }
+
+  findProductById(id: string): any{
+    return this.productModel.findById(id, function (err, docs) {
+      if (err){
+        console.log(err);
+      }
+      else{
+        console.log("Result : ", docs);
+      }
+    });
+  }
 
   findUserId(user_id: string){
     return this.consumeModel.find({user_id});

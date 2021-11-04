@@ -9,15 +9,16 @@ export class Product {
     name: string;
 
     @Prop()
-    type: string;
-
-    @Prop()
     brand: string;
 
-    @Prop()
+    @Prop({
+        required: true
+    })
     serving_size: number;
 
-    @Prop()
+    @Prop({
+        required: true
+    })
     protein : number;
 
     @Prop()
