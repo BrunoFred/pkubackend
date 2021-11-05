@@ -58,7 +58,7 @@ export class ConsumeService {
     return this.consumeModel.find({user_id});
   }
 
-  update(id: string, updateConsumeDto: UpdateConsumeDto) {
+  async update(id: string, updateConsumeDto: UpdateConsumeDto) {
     return this.consumeModel.findOneAndUpdate({_id : id}, {$set: updateConsumeDto}, {new: true});
   }
 

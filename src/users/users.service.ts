@@ -5,13 +5,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
 import { getAge, maxAndMinPkuDay } from '../utils/pkuCalculator';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     createUserDto.age = getAge(createUserDto);
     const daily_pku = maxAndMinPkuDay(createUserDto);
     createUserDto.maxQttPkuDay = daily_pku.max;
