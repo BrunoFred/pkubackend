@@ -27,6 +27,11 @@ export class ConsumeController {
     return this.consumeService.findOne(id);
   }
 
+  @Get('/daily/:date')
+  find(@Param('date') date: Date){
+    return this.consumeService.findDailyConsumes(date);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateConsumeDto: UpdateConsumeDto) {
     return this.consumeService.update(id, updateConsumeDto);

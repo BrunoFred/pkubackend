@@ -54,6 +54,10 @@ export class ConsumeService {
     });
   }
 
+  findDailyConsumes(date: Date): any{
+    return this.consumeModel.find({date});
+  }
+
   findUserId(user_id: string){
     return this.consumeModel.find({user_id});
   }
