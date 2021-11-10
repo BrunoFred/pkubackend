@@ -15,8 +15,9 @@ export class UsersService {
   create(createUserDto: CreateUserDto) {
     createUserDto.age = getAge(createUserDto);
     const daily_pku = maxAndMinPhenylalanineDay(createUserDto);
-    createUserDto.maxQttPkuDay = daily_pku.max;
-    createUserDto.minQttPkuDay = daily_pku.min;
+    console.log(daily_pku.max);
+    createUserDto.maxQttPhenylalanineDay = daily_pku.max;
+    createUserDto.minQttPhenylalanineDay = daily_pku.min;
     const user = new this.userModel(createUserDto);
     return user.save(function(err, doc) {
       if (err) return console.error(err);

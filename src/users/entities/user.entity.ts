@@ -37,10 +37,10 @@ export class User {
   age: number;
 
   @Prop()
-  maxQttPkuDay: number;
+  maxQttPhenylalanineDay: number;
 
   @Prop()
-  minQttPkuDay: number;
+  minQttPhenylalanineDay: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

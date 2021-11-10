@@ -20,7 +20,7 @@ export class CreateUserDto {
 
     age: number;
 
-    maxQttPkuDay: number;
-    
-    minQttPkuDay: number;
+    maxQttPhenylalanineDay: number;
+
+    minQttPhenylalanineDay: number;
 }
