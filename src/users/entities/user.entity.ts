@@ -9,21 +9,28 @@ export class User {
   @Prop()
   name: string;
 
-  @Prop()
+  @Prop({
+    required: true
+  })
   password: string;
 
   @Prop({
-    unique: true
+    unique: true,
+    required: true
   })
   email: string;
 
   @Prop()
   phone_number: string;
 
-  @Prop()
+  @Prop({
+    required: true
+  })
   birth_date: Date;
 
-  @Prop()
+  @Prop({
+    required: true
+  })
   weight: [number, Date];
 
   @Prop()
