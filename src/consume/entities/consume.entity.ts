@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IsDateString, IsNumber } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsNumber } from 'class-validator';
 import { Document, isValidObjectId, Mongoose, ObjectId, Schema as MongooseSchema, SchemaType } from 'mongoose';
 import { Product } from 'src/products/entities/product.entity';
 
@@ -7,12 +7,15 @@ export type ConsumeDocument = Consume & Document;
 
 @Schema()
 export class Consume {
+    @IsNotEmpty()
     @Prop()
     user_id : string;
     
+    @IsNotEmpty()
     @Prop()
     product_id: string;
 
+    @IsNotEmpty()
     @IsNumber()
     @Prop()
     amount_consumed: number;
@@ -20,6 +23,7 @@ export class Consume {
     @Prop()
     pku_consumed: number;
 
+    @IsNotEmpty()
     @IsDateString()
     @Prop()
     date: Date;
