@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Put} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe} from '@nestjs/common';
 import { ConsumeService } from './consume.service';
 import { CreateConsumeDto } from './dto/create-consume.dto';
 import { UpdateConsumeDto } from './dto/update-consume.dto';
@@ -8,6 +8,7 @@ export class ConsumeController {
   constructor(private readonly consumeService: ConsumeService) {}
 
   @Post()
+  @UsePipes(new ValidationPipe())
   create(@Body() createConsumeDto: CreateConsumeDto) {
     return this.consumeService.create(createConsumeDto);
   }
