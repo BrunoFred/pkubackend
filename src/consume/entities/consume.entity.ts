@@ -5,19 +5,27 @@ export type ConsumeDocument = Consume & Document;
 
 @Schema()
 export class Consume {
-    @Prop()
+    @Prop({
+        required: true
+    })
     user_id : string;
     
-    @Prop()
+    @Prop({
+        required: true
+    })
     product_id: string;
 
-    @Prop()
+    @Prop({
+        required: true
+    })
     amount_consumed: number;
 
     @Prop()
     pku_consumed: number;
 
-    @Prop()
+    @Prop({
+        required: true
+    })
     date: Date;
 }
 
