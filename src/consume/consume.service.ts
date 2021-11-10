@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { CreateConsumeDto } from './dto/create-consume.dto';
 import { UpdateConsumeDto } from './dto/update-consume.dto';
 import { Consume, ConsumeDocument } from './entities/consume.entity';
-import { calculateFenilalaninaPerConsume } from '../utils/pkuCalculator';
+import { calculatePhenylalaninePerConsume } from '../utils/phenylalanineInConsume';
 import { Product, ProductDocument } from '../products/entities/product.entity';
 import { CreateProductDto } from 'src/products/dto/create-product.dto';
 import { ProductsService } from '../products/products.service';
@@ -26,7 +26,7 @@ export class ConsumeService {
 
   async create(createConsumeDto: CreateConsumeDto) {
     const product = await this.findOne(createConsumeDto.product_id);
-    createConsumeDto.pku_consumed = calculateFenilalaninaPerConsume(createConsumeDto, product);
+    createConsumeDto.pku_consumed = calculatePhenylalaninePerConsume(createConsumeDto, product);
     const consume = new this.consumeModel(createConsumeDto);
     return consume.save(function(err, doc){
       if (err) return console.error(err);

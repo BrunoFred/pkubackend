@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsDateString, IsNotEmpty, IsNumber } from 'class-validator';
 import { Document, isValidObjectId, Mongoose, ObjectId, Schema as MongooseSchema, SchemaType } from 'mongoose';
-import { Product } from 'src/products/entities/product.entity';
 
 export type ConsumeDocument = Consume & Document;
 

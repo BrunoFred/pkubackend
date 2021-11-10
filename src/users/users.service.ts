@@ -4,7 +4,8 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
-import { getAge, maxAndMinPkuDay } from '../utils/pkuCalculator';
+import { maxAndMinPhenylalanineDay } from '../utils/maxAndMinPhenylalanine';
+import { getAge } from '../utils/getAge';
 
 @Injectable()
 export class UsersService {
@@ -13,7 +14,7 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto) {
     createUserDto.age = getAge(createUserDto);
-    const daily_pku = maxAndMinPkuDay(createUserDto);
+    const daily_pku = maxAndMinPhenylalanineDay(createUserDto);
     createUserDto.maxQttPkuDay = daily_pku.max;
     createUserDto.minQttPkuDay = daily_pku.min;
     const user = new this.userModel(createUserDto);

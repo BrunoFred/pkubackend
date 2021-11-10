@@ -1,18 +1,4 @@
-export function calculateFenilalaninaPerConsume(createConsumeDto, product) : any{
-    let regraDeTres = (createConsumeDto.amount_consumed*product.protein)/product.serving_size;
-    let pku_consumed = regraDeTres * 0.05;
-    return pku_consumed;
-}
-
-export function getAge(createUserDto) : any{
-    let today = Date.now();
-    let birthday = Date.parse(createUserDto.birth_date);
-    let getAge = Math.abs(birthday - today);
-    let daysBetweenDates: number = Math.ceil(getAge / (1000 * 60 * 60 * 24));
-    return (Math.floor((daysBetweenDates / 365)*100)/100);
-}
-
-export function maxAndMinPkuDay(createUserDto) : any{
+export function maxAndMinPhenylalanineDay(createUserDto) : any{
     let minPkuDay;
     let maxPkuDay;
     if (createUserDto.age >= 0 && createUserDto.age < 0.5){
@@ -53,4 +39,3 @@ export function maxAndMinPkuDay(createUserDto) : any{
         max: maxPkuDay
     };
 }
-
