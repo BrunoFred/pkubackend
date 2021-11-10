@@ -5,4 +5,5 @@ export class CreateConsumeDto {
     product_id: string;
     amount_consumed: number;
     pku_consumed: number;
+    date = Date;
 }
