@@ -4,7 +4,7 @@ import { Product } from 'src/products/entities/product.entity';
 
 export type ConsumeDocument = Consume & Document;
 
-@Schema({ timestamps: true })
+@Schema()
 export class Consume {
     @Prop()
     user_id : string;
