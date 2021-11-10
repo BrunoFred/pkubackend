@@ -40,8 +40,22 @@ export class User {
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-UserSchema.pre('save', async function(next: mongoose.HookNextFunction){
-  const hashed = await bcrypt.hash(this['password'], 10);
-  this['password'] = hashed;
-  return next();
+UserSchema.pre('save', function(next){
+  try{
+    if (!this.isModified(this['password'])){
+      return next();
+    }
+    const hashed = bcrypt.hash(this['password'], 10);
+    this['password'] = hashed;
+    return next();
+  } catch (err){
+    return next(err);
+  }
 });
+
+UserSchema.methods.checkPassword = function (attempt, callback){
+  bcrypt.compare(attempt, this['password'], (err, isMatch) => {
+    if (err) return callback(err);
+    callback(null, isMatch);
+  });
+};
